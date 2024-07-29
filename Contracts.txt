@@ -1,2 +1,1 @@
-{'name': 'NVIDIA CORP', 'symbol': 'NVDA', 'secType': 'STK', 'exchange': 'NASDAQ', 'currency': 'USD'}
-hello
+{'name': 'LOCKHEED MARTIN CORP', 'symbol': 'LMT', 'secType': 'STK', 'exchange': 'NYSE', 'currency': 'USD'}

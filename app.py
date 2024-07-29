@@ -43,7 +43,7 @@ class NewConnectionClient(EWrapper,EClient):
         return super().reqPositions()
     
     def scannerParameters(self,xml):
-        dir = "/Users/bryanlin/Interactive_Thomas_the_Train/ScannerParameters.xml"
+        dir = "/Users/bryanlin/Stock_Manager/ScannerParameters.xml"
         open(dir,"w").write(xml)
         print("Params received")
     def scannerData(self, reqId: int, rank: int, contractDetails: ContractDetails, distance: str, benchmark: str, projection: str, legsStr: str):
@@ -109,8 +109,7 @@ class NewConnectionClient(EWrapper,EClient):
          super().accountSummary(reqId, account, tag, value, currency)
          print("AccountSummary. ReqId:", reqId, "Account:", account,
                "Tag: ", tag, "Value:", value, "Currency:", currency)
-
-
+    
 def create_Contract(client, company):
     contract = Contract()
     client.reqMatchingSymbols(random.randint(1,20),company)
@@ -128,33 +127,33 @@ def Buy_stock_LMT(company,amount):
     #get contract
     contract = create_Contract(client1, company)
 
-    #build order why the fuck this shit so complicated
+    
     order = Order()
     order.totalQuantity = amount
     order.orderType = "MKT"
 
-    #what the actual FUCK
+    
     #get next order id
     client1.reqIds(-1)
 
     order.action = "BUY"
     if client1.order_id:
-        print("We in the clear to buy, wait a little you bum")
+        print("We in the clear to buy")
         client1.placeOrder(client1.order_id,contract,order)
 def Sell_stock_LMT(company,amount):
     contract = create_Contract(client1,company)
-    #build order why the fuck this shit so complicated
+    
     order = Order()
     order.totalQuantity = amount
     order.orderType = "MKT"
 
-    #what the actual FUCK
+   
     #get next order id
     client1.reqIds(-1)
 
     order.action = "SELL"
     if client1.order_id:
-        print("We in the clear to sell, wait a little you bum")
+        print("We in the clear to sell")
         client1.placeOrder(client1.order_id,contract,order)
 
 
@@ -167,24 +166,11 @@ def Sell_stock_LMT(company,amount):
 if __name__ == '__main__':
     client1 = NewConnectionClient("127.0.0.1",7497,1) 
     time.sleep(1)
-    # client2 = NewConnectionClient("127.0.0.1",7497,2)
     
-    #create_Contract(client1,'meta')
-    
-    #print(company_contract)
-    
-    #client1.reqHistoricalData(2,amazon,"","30 D","5 mins",'TRADES', True, 2, False, [])
-    # #I'm proud of myself for this one
-    #Basically type stop to stop in the prompt
-    
-    
-    
-    #client1.reqMatchingSymbols(2,"TEXAS INSTRUMENT")
-    
-    # client1.reqPositions()
     client1.reqAccountSummary(909,'All',"$LEDGER")
-    time.sleep(7)
+    time.sleep(2)
     Buy_stock_LMT('NVDIA',5)
     Sell_stock_LMT('Lockheed',2)
-    #client1.reqPnL(100,"DU9888836")
+    
+    time.sleep(3)
     client1.disconnect()
