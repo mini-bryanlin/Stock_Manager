@@ -9,7 +9,7 @@ import time
 from lightweight_charts import Chart
 from ibapi.client import Contract, Order
 from ibapi.tag_value import TagValue
-
+import random
 
 
 # this is a new class for the connection for IB idk how it works
@@ -78,7 +78,7 @@ class NewConnectionClient(EWrapper,EClient):
                     "secType":contractDescription.contract.secType,
                     "exchange":contractDescription.contract.primaryExchange,
                     "currency":contractDescription.contract.currency}
-            dir = "/Users/bryanlin/Interactive_Thomas_the_Train/Contracts.txt"
+            dir = "/Users/bryanlin/Stock_Manager/Contracts.txt"
             f = open(dir,"w")
             f.write(str(my_dict))
             f.write('\n')
@@ -114,7 +114,7 @@ class NewConnectionClient(EWrapper,EClient):
 def create_Contract(client, company):
     contract = Contract()
     client.reqMatchingSymbols(random.randint(1,20),company)
-    dir = "/Users/bryanlin/Interactive_Thomas_the_Train/Contracts.txt"
+    dir = "/Users/bryanlin/Stock_Manager/Contracts.txt"
     time.sleep(0.5)
     f = open(dir,"r")
     info = eval(f.readline())
@@ -182,6 +182,9 @@ if __name__ == '__main__':
     #client1.reqMatchingSymbols(2,"TEXAS INSTRUMENT")
     
     # client1.reqPositions()
-    client1.reqAccountSummary(909,'All','TotalCashValue')
+    client1.reqAccountSummary(909,'All',"$LEDGER")
     time.sleep(7)
+    Buy_stock_LMT('NVDIA',5)
+    Sell_stock_LMT('Lockheed',2)
+    #client1.reqPnL(100,"DU9888836")
     client1.disconnect()
