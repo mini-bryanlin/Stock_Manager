@@ -1,2 +1,2 @@
-Need to install Interactive Brokers TWS before running
-Runned on Local host, port 9747
+Using Interactive Brokers' TWS API, my friend and I are automating stock trading
+TWS on desktop is required and all the code is ran on localhost
