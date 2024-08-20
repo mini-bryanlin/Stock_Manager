@@ -174,3 +174,5 @@ if __name__ == '__main__':
     
     time.sleep(3)
     client1.disconnect()
+print('retard')
+
